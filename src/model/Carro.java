@@ -10,25 +10,34 @@ package model;
  */
 public class Carro {
 
+    private String placa;
     private String marca;
     private String modelo;
     private int anoFab;
-    private String anoMod;
+    private int anoMod;
     private String cor;
     private String tpCambio;
     private String combustivel;
     private Pessoa proprietario;//agregação da classe model pessoa como carro
 
-    public Carro(String marca, String modelo, int anoFab, String anoMod, String cor, String tpCmabio, String combustivel, Pessoa proprietario) {
+    public Carro(String placa, String marca, String modelo, int anoFab, int anoMod, String cor, String tpCambio, String combustivel, Pessoa proprietario) {
+        this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
         this.anoFab = anoFab;
         this.anoMod = anoMod;
         this.cor = cor;
-        this.tpCambio = tpCmabio;
+        this.tpCambio = tpCambio;
         this.combustivel = combustivel;
         this.proprietario = proprietario;
+    }
 
+    public String getPlaca() {
+        return placa;
+    }
+
+    public void setPlaca(String placa) {
+        this.placa = placa;
     }
 
     public String getMarca() {
@@ -55,11 +64,11 @@ public class Carro {
         this.anoFab = anoFab;
     }
 
-    public String getAnoMod() {
+    public int getAnoMod() {
         return anoMod;
     }
 
-    public void setAnoMod(String anoMod) {
+    public void setAnoMod(int anoMod) {
         this.anoMod = anoMod;
     }
 
@@ -100,7 +109,7 @@ public class Carro {
 
     @Override
     public String toString() {
-        return "\n---" + "\nmarca:t" + marca + "\nmodelo:t" + modelo + "\nanoFab:t" + anoFab + "\nanoMod:t" + anoMod + "\ncor:t" + cor + "\ntpCambio:t" + tpCambio + "\ncombustivel:t" + combustivel + "\nproprietario:t" + proprietario.getNome();
+        return "\n---" + "\nPlaca:t" + placa + "\nMarca:t" + marca + "\nModelo:t" + modelo + "\nAnoFab:t" + anoFab + "\nAnoMod:t" + anoMod + "\nCor:t" + cor + "\ntpCambio:t" + tpCambio + "\nCombustivel:t" + combustivel + "\nProprietario:t" + proprietario.getNome();
     }
 
 }//fim da classe Carro

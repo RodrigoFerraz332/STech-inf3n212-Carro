@@ -26,9 +26,71 @@ public class Inf3n212Carro {
         // TODO code application logic here
         cadPessoa.mockPessoas();
         cadCarro.mockCarros();
-        System.out.println(cadPessoa.getPessoas());
-        System.out.println("----");
-        System.out.println(cadCarro.getCarros());
+        int opM = 99;
+        int opSM = 99;
+        do {
+            System.out.println("--Sistema de Cadastro--");
+            menuP();
+            opM = leiaNumint();
+            switch (opM) {
+                case 1:
+                case 2:
+                    do {
+                        subMenu(opM);
+                        opSM = leiaNumint();
+                        switch (opSM) {
+                            case 1:
+                                System.out.println("Cadastra");
+                                if (opM == 1) {
+                                    cadastrarPessoa();
+                                } else {
+                                    cadastrarCarro();
+                                }
+                                break;
+                            case 2:
+                                System.out.println("Edita");
+                                if (opM == 1) {
+                                    editarPessoa();
+                                } else {
+                                    editarCarro();
+                                }
+                                break;
+                            case 3:
+                                System.out.println("Lista");
+                                if (opM == 1) {
+                                    listarPessoa();
+                                } else {
+                                    listarCarro();
+                                }
+                                break;
+                            case 4:
+                                System.out.println("Deleta");
+                                if (opM == 1) {
+                                    deletarPessoa();
+                                } else {
+                                    deletarCarro();
+                                }
+                                break;
+                            case 0:
+                                System.out.println("Volta");
+                                break;
+
+                            default:
+                                System.out.println("Opção inválida,tente novamente");
+                        }
+                    } while (opSM != 0);
+
+                    break;
+                case 0:
+                    System.out.println("Aplicação encerrada pelo usuário!");
+                    break;
+                default:
+                    System.out.println("Opção inválida, tente novamente!");
+
+                    throw new AssertionError();
+            }//fim do Switch
+
+        } while (opM != 0);
 
     }//fim do método main
 
@@ -43,10 +105,10 @@ public class Inf3n212Carro {
         return 99;
     }
 
-    public static void menu() {
+    public static void menuP() {
         System.out.println("--Menu Principal--");
         System.out.println("1 - Ger.Pessoa");
-        System.out.println("1 - Ger.Carro");
+        System.out.println("2 - Ger.Carro");
         System.out.println("0 - Sair");
         System.out.println("Digite aqui:");
     }//Fim do menu Principal
@@ -59,12 +121,44 @@ public class Inf3n212Carro {
         if (opM == 2) {
             subM = "Carro";
         }
-        System.out.println("--Ger" + subM+"--");
-        System.out.println("1-Cadastrar"+subM);
-        System.out.println("2-Editar"+subM);
-        System.out.println("3-Listar"+subM+"s");
-        System.out.println("4-Deletar"+subM);
+        System.out.println("--Ger" + subM + "--");
+        System.out.println("1-Cadastrar" + subM);
+        System.out.println("2-Editar" + subM);
+        System.out.println("3-Listar" + subM + "s");
+        System.out.println("4-Deletar" + subM);
         System.out.println("0-Voltar");
         System.out.println("DIgite aqui:");
+    }
+
+    private static void cadastrarPessoa() {
+        System.out.println("Pessoa");
+    }
+
+    private static void cadastrarCarro() {
+        System.out.println("Carro");
+    }
+
+    private static void editarPessoa() {
+        System.out.println("Pessoa");
+    }
+
+    private static void editarCarro() {
+        System.out.println("Carro");
+    }
+
+    private static void listarPessoa() {
+        System.out.println("Pessoa");
+    }
+
+    private static void listarCarro() {
+        System.out.println("Carro");
+    }
+
+    private static void deletarPessoa() {
+        System.out.println("Pessoa");
+    }
+
+    private static void deletarCarro() {
+        System.out.println("Carro");
     }
 }//fim da classe main

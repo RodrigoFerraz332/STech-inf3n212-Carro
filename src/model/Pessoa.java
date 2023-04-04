@@ -81,7 +81,7 @@ public class Pessoa {
 
     @Override
     public String toString() {
-        return "\n---" + "\nidPessoa:\t" + idPessoa + "\nnome:t" + nome + "\ncpf:\t" + cpf + "\nendereco:\t" + endereco + "\ntelefone:\t" + telefone;
+        return "\n---" + "\nidPessoa:\t" + idPessoa + "\nnome:\t" + nome + "\ncpf:\t" + cpf + "\nendereco:\t" + endereco + "\ntelefone:\t" + telefone;
     }
     
     

@@ -87,4 +87,29 @@ public class Validadores {
         return placa.matches(regex);
     }
 
+    public static boolean validarRenavam(String renavam) {
+        int[] pesos = {3, 2, 9, 8, 7, 6, 5, 4, 3, 2};
+        int soma = 0;
+
+        // Verifica se o Renavam possui 11 dígitos
+        if (renavam == null || renavam.length() != 11) {
+            return false;
+        }
+
+        // Calcula a soma dos produtos dos dígitos do Renavam pelos pesos correspondentes
+        for (int i = 0; i < 10; i++) {
+            soma += Integer.parseInt(String.valueOf(renavam.charAt(i))) * pesos[i];
+        }
+
+        // Calcula o dígito verificador
+        int dv = soma % 11;
+        if (dv == 10) {
+            dv = 0;
+        }
+
+        // Verifica se o dígito verificador é igual ao último dígito do Renavam
+        return dv == Integer.parseInt(String.valueOf(renavam.charAt(10)));
+        
+    }
+
 }

@@ -185,7 +185,36 @@ public class Inf3n212Carro {
     }//fim do cadPessoa
 
     private static void cadastrarCarro() {
-        System.out.println("Carro");
+        System.out.println("--Cadastro Carro--");
+        String placa;
+        String marca;
+        String modelo;
+        int anoFab;
+        int anoMod;
+        String cor;
+        String tpCambio;
+        String combustivel;
+        Pessoa proprietario;
+        boolean pCarro = true;
+        do {
+            System.out.println("informe a Placa");
+            placa =leia.nextLine();
+            pCarro=Validadores.verificaPlacaMercosul(placa);
+            if (pCarro) {
+                Carro carro = cadCarro.GetCarroplaca(placa);
+                if (carro==null) {
+                    
+                }else{
+                    System.out.println("Placa ja cadastrada.");
+                    pCarro=false;
+                }
+            }else{
+                System.out.println("Placa inváida! Tente novamente");
+                pCarro = true;
+            }
+                    
+
+        } while (pCarro);
     }
 
     private static void editarPessoa() {
@@ -198,34 +227,39 @@ public class Inf3n212Carro {
             if (isCPF) {
                 Pessoa p = cadPessoa.GetPessoaCPF(cpf);
                 if (p != null) {
-                    System.out.println("Quais dados de "+p.getNome()+"deseja alterar?");
-                    System.out.println("1-Nome");
-                    System.out.println("2-Endereço");
-                    System.out.println("3-Telefone");
-                    System.out.println("4-Todos");
-                    System.out.println("0-Cancelar");
-                    System.out.println("Digite a opção");
-                    int op = leiaNumint();
-                    if (op == 1 || op==4) {
-                        System.out.println("Informe o novo nome:");
-                        p.setNome(leia.nextLine());
-                        
-                    }
-                    if (op == 1 || op==4) {
-                        System.out.println("Informe o novo Endereço:");
-                        p.setEndereco(leia.nextLine());
-                        
-                    }
-                    if (op == 1 || op==4) {
-                        System.out.println("Informe o novo Telefone:");
-                        p.setTelefone(leia.nextLine());
-                        
-                    }
-                    if (op==0) {
-                        System.out.println("Operação cancelada pelo usuário!");
-                        isCPF=false;
-                    }
+                    do {
+                        System.out.println("Quais dados de " + p.getNome() + "deseja alterar?");
+                        System.out.println("1-Nome");
+                        System.out.println("2-Endereço");
+                        System.out.println("3-Telefone");
+                        System.out.println("4-Todos");
+                        System.out.println("0-Voltar");
+                        System.out.println("Digite a opção");
+                        int op = leiaNumint();
+                        if (op == 1 || op == 4) {
+                            System.out.println("Informe o novo nome:");
+                            p.setNome(leia.nextLine());
 
+                        }
+                        if (op == 1 || op == 4) {
+                            System.out.println("Informe o novo Endereço:");
+                            p.setEndereco(leia.nextLine());
+
+                        }
+                        if (op == 1 || op == 4) {
+                            System.out.println("Informe o novo Telefone:");
+                            p.setTelefone(leia.nextLine());
+
+                        }
+                        if (op == 0) {
+                            System.out.println("Operação cancelada pelo usuário!");
+                            isCPF = false;
+                            if (op < 0 || op > 4) {
+                                System.out.println("Opção invalida,tente novamente!");
+
+                            }
+                        }
+                    } while (isCPF);
                 } else {
                     System.out.println("Cpf não cadastrado!");
                     isCPF = false;

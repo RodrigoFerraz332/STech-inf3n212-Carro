@@ -4,6 +4,7 @@
  */
 package util;
 
+import java.time.LocalDate;
 import java.util.InputMismatchException;
 
 /**
@@ -81,7 +82,7 @@ public class Validadores {
 
     public static boolean verificaPlacaMercosul(String placa) {
         // Expressão regular para verificar se a placa é válida
-        String regex = "^[A-Z]{3}[0-9][A-Z][0-9]{2}$";
+        String regex = ("[A-Z]{3}[0-9]{1}[A-Z]{1}[0-9]{2}|[A-Z]{3}[0-9]{4}");
 
         // Verifica se a placa corresponde à expressão regular
         return placa.matches(regex);
@@ -109,7 +110,22 @@ public class Validadores {
 
         // Verifica se o dígito verificador é igual ao último dígito do Renavam
         return dv == Integer.parseInt(String.valueOf(renavam.charAt(10)));
-        
+
     }
 
-}
+    public static boolean validarAnoCarro(int anoFab, int anoMod) {
+        boolean anoOK = true;
+        int anoAtual = LocalDate.now().getYear();
+        if (anoMod < anoFab) {
+            anoOK = false;
+        }
+        if (anoMod - anoFab >= 2) {
+            anoOK = false;
+            if (anoFab > anoAtual ||anoMod> anoAtual + 1) {
+                anoOK = false;
+            }
+
+        }
+        return anoOK;
+    }
+}//fim da classe

@@ -261,7 +261,7 @@ public class Inf3n212Carro {
     private static void editarPessoa() {
         System.out.println("--Editar Pessoa--");
         boolean isCPF;
-        do {
+        do {//faça
             System.out.println("Informe o CPF da Pessoa a ser editado");
             String cpf = leia.nextLine();
             isCPF = Validadores.isCPF(cpf);
@@ -317,12 +317,106 @@ public class Inf3n212Carro {
                     isCPF = false;
                 }
             }
-        } while (isCPF);
+        } while (isCPF);//enquanto
     }//Fim do Editar
 
     private static void editarCarro() {
-        System.out.println("Carro");
-    }
+        System.out.println("--Editar Carro--");
+        boolean isPlaca;
+        do {
+            System.out.println("Informe a placa");
+            String placa = leia.nextLine();
+            placa = placa.toUpperCase();
+            isPlaca = Validadores.verificaPlacaMercosul(placa);
+            if (isPlaca) {
+                Carro c;
+                c = cadCarro.GetCarroplaca(placa);
+                if (c != null) {
+                    System.out.println(c.toString());
+                    System.out.println("O que deseja alterar?");
+                    System.out.println("1-Cor");
+                    System.out.println("2-Tipo de Câmbio");
+                    System.out.println("3-Tipo de combustivel");
+                    System.out.println("4-Proprietário");
+                    System.out.println("5-Todos");
+                    System.out.println("0-Cancelar");
+                    System.out.println("0-Cancelar");
+                    System.out.println("Digite sua escolha aqui:");
+                    int op = leiaNumint();
+                    if (op == 1 || op == 5) {
+                        System.out.println("Informe a nova cor:");
+                        c.setCor(leia.nextLine().toUpperCase());
+                    }
+                    if (op == 2 || op == 5) {
+                        System.out.println("Informe o novo Câmbio:");
+                        c.setTpCambio(leia.nextLine().toUpperCase());
+                    }
+                    if (op == 3 || op == 5) {
+                        System.out.println("Informe o novo combustível:");
+                        c.setCombustivel(leia.nextLine().toUpperCase());
+                    }
+                    if (op == 4 || op == 5) {
+                        boolean isCPF;
+                        do {
+                            System.out.println("Informe o novo proprietário");
+                            String cpf = leia.nextLine();
+                            isCPF = Validadores.isCPF(cpf);
+                            if (isCPF) {
+                                Pessoa p = cadPessoa.GetPessoaCPF(cpf);
+                                if (p != null) {
+                                    System.out.println("Pessoa selecionada:" + p.getNome());
+                                    System.out.println("Está correto");
+                                    System.out.println("1-Sim|2-Não");
+                                    System.out.println("Digite aqui:");
+                                    op = leiaNumint();
+                                    if (op == 1) {
+                                        isCPF = false;
+                                        c.setProprietario(p);
+                                    }
+
+                                } else {
+                                    System.out.println("CPF não cadastrado!");
+                                    System.out.println("1- Cadastrar?");
+                                    System.out.println("2-Tentar novamente?");
+                                    System.out.println("Digite aqui sua opção:");
+                                    int op2 = leiaNumint();
+                                    if (op2 == 1) {
+                                        cadastrarPessoa();
+                                    }
+                                }
+                            }else{
+                                System.out.println("CPF inválido, tente novamente!");
+                                isCPF=true;
+                            }
+                        } while (isCPF);
+                        System.out.println("Informe o novo proprietário");
+
+                    }
+                    if (op == 0) {
+                        System.out.println("Edição do carro cancelada pelo usuário!");
+                        isPlaca = false;
+                    }
+                    if (op < 0 || op > 5) {
+                        System.out.println("Opção inválida");
+                    }
+                } else {
+                    System.out.println("Placa não cadastrada");
+                    isPlaca = true;
+                }
+
+            } else {
+                System.out.println("Placa informada Inválida");
+                System.out.println("Deseja tentar novamente?");
+                System.out.println("1-Sim|2-Não-cancelar");
+                System.out.println("digite aqui:");
+                int op = leiaNumint();
+                if ((op == 1)) {
+                    isPlaca = true;
+                }
+
+            }
+        } while (isPlaca);
+    }//fim do editar
 
     private static void listarPessoa() {
         System.out.println("--Lista de Pessoas--");
